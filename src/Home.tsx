@@ -1,25 +1,43 @@
-import {useEffect, useState} from "react";
-import styled from "styled-components";
-import confetti from "canvas-confetti";
-import * as anchor from "@project-serum/anchor";
-import {LAMPORTS_PER_SOL, PublicKey} from "@solana/web3.js";
-import {useAnchorWallet} from "@solana/wallet-adapter-react";
-import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
-import {GatewayProvider} from '@civic/solana-gateway-react';
-import Countdown from "react-countdown";
-import {Snackbar, Paper, LinearProgress, Chip} from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
-import {toDate, AlertState, getAtaForMint} from './utils';
-import {MintButton} from './MintButton';
-import {MultiMintButton} from './MultiMintButton';
 import {
-    CandyMachine,
-    awaitTransactionSignatureConfirmation,
-    getCandyMachineState,
-    mintOneToken,
-    mintMultipleToken,
-    CANDY_MACHINE_PROGRAM,
-} from "./candy-machine";
+  useEffect,
+  useState,
+} from 'react';
+
+import confetti from 'canvas-confetti';
+import Countdown from 'react-countdown';
+import styled from 'styled-components';
+
+import { GatewayProvider } from '@civic/solana-gateway-react';
+import {
+  Chip,
+  LinearProgress,
+  Paper,
+  Snackbar,
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import * as anchor from '@project-serum/anchor';
+import { useAnchorWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import {
+  LAMPORTS_PER_SOL,
+  PublicKey,
+} from '@solana/web3.js';
+
+import {
+  awaitTransactionSignatureConfirmation,
+  CANDY_MACHINE_PROGRAM,
+  CandyMachine,
+  getCandyMachineState,
+  mintMultipleToken,
+  mintOneToken,
+} from './candy-machine';
+import { MintButton } from './MintButton';
+import { MultiMintButton } from './MultiMintButton';
+import {
+  AlertState,
+  getAtaForMint,
+  toDate,
+} from './utils';
 
 const cluster = process.env.REACT_APP_SOLANA_NETWORK!.toString();
 const decimals = process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS ? +process.env.REACT_APP_SPL_TOKEN_TO_MINT_DECIMALS!.toString() : 9;
@@ -588,11 +606,11 @@ const Home = (props: HomeProps) => {
                 <MintContainer>
                     <DesContainer>
                         <NFT elevation={3}>
-                            <h2>My NFT</h2>
+                            <h2>Sol Zmirfs</h2>
                             <br/>
                             <div><Price
                                 label={isActive && whitelistEnabled && (whitelistTokenBalance > 0) ? (whitelistPrice + " " + priceLabel) : (price + " " + priceLabel)}/><Image
-                                src="cool-cats.gif"
+                                src="zmirfsol.gif"
                                 alt="NFT To Mint"/></div>
                             <br/>
                             {wallet && isActive && whitelistEnabled && (whitelistTokenBalance > 0) && isBurnToken &&
